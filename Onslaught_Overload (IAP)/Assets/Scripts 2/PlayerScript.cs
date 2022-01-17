@@ -44,6 +44,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateMouseLook();
+    }
+
+    void UpdateMouseLook()
+    {
+
     }
 }

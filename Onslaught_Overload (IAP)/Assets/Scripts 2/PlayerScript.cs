@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.anyKey == false)
         {
-            animator.SetBool("walkForward", false);
+            animator.SetBool("isIdle", true);
         }
 
         UpdateMouseLook();

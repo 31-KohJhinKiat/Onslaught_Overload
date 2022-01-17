@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
 {
     //player camera
     [SerializeField] Transform playerCamera = null;
+    [SerializeField] float mouseSensitivity = 4f;
+    float cameraPitch = 0.0f;
 
     //movement
     public float walkSpeed;
@@ -98,6 +100,6 @@ public class PlayerScript : MonoBehaviour
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        transform.Rotate(Vector3.up * mouseDelta.x);
+        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     //player camera
-    Transform playerCamera = null;
+    [SerializeField] Transform playerCamera = null;
 
     //movement
     public float walkSpeed;
@@ -50,6 +50,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (GameManager.instance.pause)
         {
             animator.SetBool("walkForward", false);
@@ -61,6 +62,8 @@ public class PlayerScript : MonoBehaviour
         {
             return;
         }
+
+        UpdateMouseLook();
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -88,7 +91,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("isIdle", true);
         }
 
-        UpdateMouseLook();
+        
     }
 
     void UpdateMouseLook()

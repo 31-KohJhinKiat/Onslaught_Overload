@@ -93,14 +93,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (Input.GetMouseButton(0))
             {
-
-               
+ 
                 Instantiate(bullet, gun.transform.position, transform.rotation);
                 
-                
-                
-                
-
 
             }
 

@@ -10,11 +10,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] Transform playerCamera = null;
     [SerializeField] float mouseSensitivity = 4f;
     [SerializeField] bool lockCrusor = true;
+    CharacterController controller = null;
     float cameraPitch = 0.0f;
     
 
     //movement
-    public float walkSpeed;
+    [SerializeField] float walkSpeed = 6.0f;
+    //public float walkSpeed;
     public float runSpeed;
 
     //jump
@@ -44,6 +46,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         if(lockCrusor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -63,8 +66,7 @@ public class PlayerScript : MonoBehaviour
 
         if (GameManager.instance.pause)
         {
-            animator.SetBool("walkForward", false);
-            animator.SetBool("runForward", false);
+            
             return;
         }
 
@@ -74,14 +76,8 @@ public class PlayerScript : MonoBehaviour
         }
 
         UpdateMouseLook();
-        UpdateMovement();       
-
-        if (Input.anyKey == false)
-        {
-            animator.SetBool("isIdle", true);
-        }
-
-        
+        UpdateMovement();   
+       
     }
 
     void UpdateMouseLook()
@@ -92,7 +88,6 @@ public class PlayerScript : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, - 90.0f, 90.0f);
 
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
     }
 
@@ -100,5 +95,7 @@ public class PlayerScript : MonoBehaviour
     {
         Vector2 inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         inputDir.Normalize();
+        Vector3 velocity = (transform.forward * inputDir.y + transform.right * inputDir.x) * walkSpeed;
+        controller.Move(velocity * Time.deltaTime);
     }
 }

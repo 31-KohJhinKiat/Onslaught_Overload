@@ -45,6 +45,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //gun
         public GameObject gun;
         public GameObject bullet;
+        public bool canShoot = true;
+        private float waitTime = 0.1f;
+        private float currentTime = 0.0f;
         public AudioClip reload;
         public AudioClip shoot;
 
@@ -67,6 +70,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
+            currentTime = currentTime + Time.deltaTime;
+
             if (GameManager.instance.pause == false)
             {
                 RotateView();
@@ -91,11 +96,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_PreviouslyGrounded = m_CharacterController.isGrounded;
             }
 
-            if (Input.GetMouseButton(0))
-            {
- 
-                Instantiate(bullet, gun.transform.position, transform.rotation);
-                
+            if (Input.GetMouseButton(0) && canShoot)
+            {             
+                if (currentTime >= waitTime)
+                {
+                    
+                    Vector2 newposition =
+                        new Vector2(transform.position.x,
+                        transform.position.y + 0.8f);
+                    Instantiate(bullet, gun.transform.position,
+                        transform.rotation);
+                    currentTime = 0;
+                }
 
             }
 

@@ -9,18 +9,22 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     
     private float scoreValue;
-    private float totalCoins;
-    public float timeLeft;
-    public int timeRemining;
     
     public Text ScoreText;
+
+
+
+    //timer
+    private float TimerValue;
+    public float levelTime;
+    private float elapsedGameTime;
     public Text TimerText;
 
-    private float TimerValue;
-
+    //audio
     private AudioSource audioSource;
     public AudioClip collectSound;
 
+    //pause
     public bool pause;
     public GameObject panel;
 
@@ -31,8 +35,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        totalCoins = 6;
 
         audioSource = GetComponent<AudioSource>();
 
@@ -58,12 +60,24 @@ public class GameManager : MonoBehaviour
         else
         {
             panel.SetActive(false);
-            timeLeft -= Time.deltaTime;
-            timeRemining = Mathf.FloorToInt(timeLeft % 60);
-            TimerText.text = "Timer: " + timeRemining.ToString();
+
+            if (levelTime > 0)
+            {
+                levelTime -= Time.deltaTime;
+                TimerText.GetComponent<Text>().text =
+                    "Time left: " + FormatTime(levelTime);
+            }
+            else
+            {
+                levelTime = 0;
+                print("Times up!");
+
+            }
+
+
         }
 
-        if(scoreValue == totalCoins)
+        /*if(scoreValue == totalCoins)
         {          
           SceneManager.LoadScene("WinScene");
             
@@ -71,10 +85,28 @@ public class GameManager : MonoBehaviour
 
         else if (timeLeft <= 0)
         {
-            SceneManager.LoadScene("LoseScene");
+            losePanel.Active(true);
 
-        }
+        }*/
 
+    }
+
+    public void SetTimeText(float time)
+    {
+        TimerText.text = "Timer: " + FormatTime(time);
+    }
+
+    private string FormatTime(float time)
+    {
+        int intTime = (int)time;
+        int minutes = intTime / 60;
+        int seconds = intTime % 60;
+        float fraction = time * 1000;
+        fraction = (fraction % 1000);
+        string timerText =
+            System.String.Format("{0:00}:{1:00}:{2:000}",
+            minutes, seconds, fraction);
+        return timerText;
     }
 
     public void addScore()
@@ -93,4 +125,4 @@ public class GameManager : MonoBehaviour
     }
 
 
-    }
+}

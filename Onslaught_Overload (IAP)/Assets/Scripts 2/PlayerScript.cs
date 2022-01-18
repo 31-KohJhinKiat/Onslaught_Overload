@@ -10,12 +10,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] Transform playerCamera = null;
     [SerializeField] float mouseSensitivity = 4f;
     [SerializeField] bool lockCrusor = true;
+    [SerializeField] [Range(0.0f, 0.8f)] float mouseSmoothTime = 0.05f;
+
     CharacterController controller = null;
     float cameraPitch = 0.0f;
     
 
     //movement
     [SerializeField] float walkSpeed = 6.0f;
+    [SerializeField] [Range(0.0f, 0.8f)] float moveSmoothTime = 0.3f;
+    Vector2 currentDir = Vector2.zero;
+    Vector2 currentDirVelocity = Vector2.zero;
+    
     //public float walkSpeed;
     public float runSpeed;
 
@@ -93,9 +99,14 @@ public class PlayerScript : MonoBehaviour
 
     void UpdateMovement()
     {
-        Vector2 inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        inputDir.Normalize();
-        Vector3 velocity = (transform.forward * inputDir.y + transform.right * inputDir.x) * walkSpeed;
+        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), 
+            Input.GetAxisRaw("Vertical"));
+        targetDir.Normalize();
+
+        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed;
+
         controller.Move(velocity * Time.deltaTime);
     }
 }

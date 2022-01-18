@@ -44,6 +44,12 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(lockCrusor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
@@ -68,27 +74,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         UpdateMouseLook();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += transform.forward * walkSpeed * Time.deltaTime;
-            animator.SetBool("walkForward", true);
-
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position -= transform.forward * walkSpeed * Time.deltaTime;
-            animator.SetBool("walkForward", true);
-
-        }
-
-        /* if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.LeftShift)))
-        {
-            transform.position += transform.forward * runSpeed * Time.deltaTime;
-            animator.SetBool("runForward", true);
-
-        } */
+        UpdateMovement();       
 
         if (Input.anyKey == false)
         {
@@ -108,5 +94,11 @@ public class PlayerScript : MonoBehaviour
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
 
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
+    }
+
+    void UpdateMovement()
+    {
+        Vector2 inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        inputDir.Normalize();
     }
 }

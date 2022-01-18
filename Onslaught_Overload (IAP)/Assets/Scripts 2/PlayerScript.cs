@@ -11,7 +11,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float mouseSensitivity = 4f;
     [SerializeField] bool lockCrusor = true;
     [SerializeField] [Range(0.0f, 0.8f)] float mouseSmoothTime = 0.05f;
-
+    Vector2 currentMouseDelta = Vector2.zero;
+    Vector2 currentMouseDeltaVelocity = Vector2.zero;
     CharacterController controller = null;
     float cameraPitch = 0.0f;
     
@@ -36,11 +37,12 @@ public class PlayerScript : MonoBehaviour
     public float playerHealth;
 
     //gun
-
+    public GameObject gun;
+    public GameObject bullet;
 
 
     //animation
-    public Animator animator;
+    //public Animator animator;
 
     //sound
     private AudioSource audioSource;
@@ -59,7 +61,7 @@ public class PlayerScript : MonoBehaviour
             Cursor.visible = false;
         }
 
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 3.0f, 0.0f);
@@ -88,13 +90,15 @@ public class PlayerScript : MonoBehaviour
 
     void UpdateMouseLook()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta,
+            ref currentMouseDeltaVelocity, mouseSmoothTime);
 
-        cameraPitch -= mouseDelta.y * mouseSensitivity;
+        cameraPitch -= currentMouseDelta.y * mouseSensitivity;
         cameraPitch = Mathf.Clamp(cameraPitch, - 90.0f, 90.0f);
 
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
+        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
     }
 
     void UpdateMovement()

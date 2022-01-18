@@ -45,7 +45,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //gun
         public GameObject gun;
         public GameObject bullet;
-        
+        public AudioClip reload;
+        public AudioClip shoot;
 
         // Use this for initialization
         private void Start()
@@ -90,10 +91,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_PreviouslyGrounded = m_CharacterController.isGrounded;
             }
 
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetMouseButton(0))
             {
 
-                //elapsedTime = 0;
+               
                 Instantiate(bullet, gun.transform.position, transform.rotation);
                 
                 

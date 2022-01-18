@@ -9,7 +9,9 @@ public class PlayerScript : MonoBehaviour
     //player camera
     [SerializeField] Transform playerCamera = null;
     [SerializeField] float mouseSensitivity = 4f;
+    [SerializeField] bool lockCrusor = true;
     float cameraPitch = 0.0f;
+    
 
     //movement
     public float walkSpeed;
@@ -99,6 +101,11 @@ public class PlayerScript : MonoBehaviour
     void UpdateMouseLook()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        cameraPitch -= mouseDelta.y * mouseSensitivity;
+        cameraPitch = Mathf.Clamp(cameraPitch, - 90.0f, 90.0f);
+
+        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
 
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
     }

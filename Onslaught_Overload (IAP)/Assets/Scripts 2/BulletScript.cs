@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public float BulletSpeed;
+    private float timeCreated;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeCreated = 0;
+        Destroy(gameObject, 5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.instance.pause)
+        {
+            return;
+        }
+
+        transform.position += transform.forward * BulletSpeed * Time.deltaTime;
+        timeCreated += Time.deltaTime;
+        if (timeCreated == 5)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

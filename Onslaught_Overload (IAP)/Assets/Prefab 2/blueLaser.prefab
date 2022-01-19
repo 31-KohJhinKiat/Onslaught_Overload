@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417071945547739325}
   - component: {fileID: 4417071945547739324}
-  - component: {fileID: 4417071945547739327}
+  - component: {fileID: -3056115640119218668}
   m_Layer: 8
   m_Name: blueLaser
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4417071945547739327
+--- !u!114 &-3056115640119218668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57cb97a78a67454b9fa36177cbbf439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 50
+  BulletSpeed: 100
 --- !u!1 &4417071947042080025
 GameObject:
   m_ObjectHideFlags: 0

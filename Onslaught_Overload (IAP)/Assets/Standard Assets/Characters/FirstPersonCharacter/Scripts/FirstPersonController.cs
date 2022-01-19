@@ -43,6 +43,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         //gun
+        public float reloadTime;
         public GameObject gun;
         public GameObject bullet;
         public bool canShoot = true;
@@ -100,13 +101,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {             
                 if (currentTime >= waitTime)
                 {
-                    
-                    Vector2 newposition =
-                        new Vector2(transform.position.x,
-                        transform.position.y + 0.8f);
                     Instantiate(bullet, gun.transform.position,
-                        transform.rotation);
+                    gun.transform.rotation);
+                    /*GameObject instBullet = Instantiate(bullet, gun.transform.position, Quaternion.identity);
+                    Rigidbody instBulletRB = instBullet.GetComponent<Rigidbody>();
+
+                    instBulletRB.AddForce(Vector3.forward * bulletSpeed);
+                    Destroy(instBullet, 3f); */
+
                     currentTime = 0;
+                    GameManager.instance.AmmoDecrease();
                 }
 
             }

@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
+    //score
     private float scoreValue;
-    
     public Text ScoreText;
 
-
+    //ammo
+    public Text AmmoText;
+    public float AmmoCount;
+    public float MaxAmmo;
 
     //timer
     private float TimerValue;
@@ -77,17 +80,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        /*if(scoreValue == totalCoins)
-        {          
-          SceneManager.LoadScene("WinScene");
-            
-        }
 
-        else if (timeLeft <= 0)
-        {
-            losePanel.Active(true);
-
-        }*/
 
     }
 
@@ -115,6 +108,12 @@ public class GameManager : MonoBehaviour
         scoreValue++;
         ScoreText.GetComponent<Text>().text = "Score: " + scoreValue;
         
+    }
+
+    public void AmmoDecrease()
+    {
+        AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
+        AmmoCount--;
     }
 
     public void ResumeButton()

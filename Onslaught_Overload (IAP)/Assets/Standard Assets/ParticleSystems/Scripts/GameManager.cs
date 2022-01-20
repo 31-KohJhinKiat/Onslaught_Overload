@@ -12,11 +12,6 @@ public class GameManager : MonoBehaviour
     private float scoreValue;
     public Text ScoreText;
 
-    //ammo
-    public Text AmmoText;
-    public float AmmoCount;
-    public float MaxAmmo;
-
     //timer
     private float TimerValue;
     public float levelTime;
@@ -38,6 +33,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        
 
         audioSource = GetComponent<AudioSource>();
 
@@ -110,11 +107,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void AmmoDecrease()
-    {
-        AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
-        AmmoCount--;
-    }
+    
 
     public void ResumeButton()
     {

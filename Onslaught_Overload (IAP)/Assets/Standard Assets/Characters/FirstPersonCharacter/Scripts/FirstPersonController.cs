@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -52,6 +53,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public AudioClip reload;
         public AudioClip shoot;
 
+        //ammo
+        public Text AmmoText;
+        public float AmmoCount;
+        private float MaxAmmo;
+
         // Use this for initialization
         private void Start()
         {
@@ -65,6 +71,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            MaxAmmo = 50;
+
+            if (AmmoCount == -1)
+                AmmoCount = MaxAmmo;
         }
 
 
@@ -72,6 +83,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             currentTime = currentTime + Time.deltaTime;
+
+            
 
             if (GameManager.instance.pause == false)
             {
@@ -97,23 +110,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_PreviouslyGrounded = m_CharacterController.isGrounded;
             }
 
+            
+            if (Input.GetKey(KeyCode.R))
+            {
+                Reload();
+            }
+
+            if (AmmoCount <= 0)
+            {
+                return;
+            }
+
             if (Input.GetMouseButton(0) && canShoot)
-            {             
-                if (currentTime >= waitTime)
-                {
-                    Instantiate(bullet, gun.transform.position,
-                    gun.transform.rotation);
-                    /*GameObject instBullet = Instantiate(bullet, gun.transform.position, Quaternion.identity);
-                    Rigidbody instBulletRB = instBullet.GetComponent<Rigidbody>();
-
-                    instBulletRB.AddForce(Vector3.forward * bulletSpeed);
-                    Destroy(instBullet, 3f); */
-
-                    currentTime = 0;
-                    GameManager.instance.AmmoDecrease();
-                }
+            {
+                Shoot();
 
             }
+
 
         }
 
@@ -293,6 +306,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
 
-       
+        private void Shoot()
+        {
+            if (currentTime >= waitTime)
+            {
+                Instantiate(bullet, gun.transform.position,
+                gun.transform.rotation);
+                /*GameObject instBullet = Instantiate(bullet, gun.transform.position, Quaternion.identity);
+               */
+
+                currentTime = 0;
+                AmmoDecrease();
+            }
+        }
+
+        public void AmmoDecrease()
+        {
+            AmmoCount--;
+            AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
+            
+        }
+
+        void Reload()
+        {
+            AmmoCount = MaxAmmo;
+            AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
+        }
+
     }
 }

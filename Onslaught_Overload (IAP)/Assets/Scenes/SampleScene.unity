@@ -546,7 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4404807d3f5a37e48a84af3502ab37f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreText: {fileID: 848656614}
   levelTime: 180
   TimerText: {fileID: 1596926334}
   collectSound: {fileID: 8300000, guid: e6deaac027d8db849aded988a67e1010, type: 3}
@@ -1115,18 +1114,18 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: reload
       value: 
-      objectReference: {fileID: 8300000, guid: e6deaac027d8db849aded988a67e1010, type: 3}
+      objectReference: {fileID: 8300000, guid: 24b33b0abef3b104aa03e8d7919c1283, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: shoot
       value: 
-      objectReference: {fileID: 8300000, guid: 9034906d2ded74a4ea7f3e9295f769ad, type: 3}
+      objectReference: {fileID: 8300000, guid: 2220f6626f6dc0c4b8588501193d2ba5, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: bulletSpeed
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: reloadTime
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: AmmoText
@@ -2140,7 +2139,7 @@ PrefabInstance:
     - target: {fileID: 4417071945547739322, guid: c8caa7cb1923c61429ef31513f9d1c5e,
         type: 3}
       propertyPath: m_Name
-      value: blueLaser
+      value: bluePlasma
       objectReference: {fileID: 0}
     - target: {fileID: 4417071945547739325, guid: c8caa7cb1923c61429ef31513f9d1c5e,
         type: 3}

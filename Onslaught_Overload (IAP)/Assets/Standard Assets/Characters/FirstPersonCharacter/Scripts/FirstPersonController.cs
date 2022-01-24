@@ -4,6 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -43,15 +44,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        //gun
-        public float reloadTime;
+        //gun       
         public GameObject gun;
         public GameObject bullet;
         public bool canShoot = true;
-        private float waitTime = 0.1f;
-        private float currentTime = 0.0f;
-        public AudioClip reload;
+        private float waitTime = 0.1f;        
+        private float currentShootTime = 0.0f;
         public AudioClip shoot;
+
+        //reload
+        public float reloadTime;
+        public AudioClip reload;
 
         //ammo
         public Text AmmoText;
@@ -82,9 +85,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            currentTime = currentTime + Time.deltaTime;
-
-            
+            currentShootTime = currentShootTime + Time.deltaTime;
 
             if (GameManager.instance.pause == false)
             {
@@ -113,7 +114,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             
             if (Input.GetKey(KeyCode.R))
             {
-                Reload();
+                    StartCoroutine(Reload());
+                    return;
+    
             }
 
             if (AmmoCount <= 0)
@@ -308,29 +311,45 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Shoot()
         {
-            if (currentTime >= waitTime)
+            if (currentShootTime >= waitTime)
             {
+                //m_audioSource.PlayOneShot(shoot);
                 Instantiate(bullet, gun.transform.position,
                 gun.transform.rotation);
                 /*GameObject instBullet = Instantiate(bullet, gun.transform.position, Quaternion.identity);
                */
 
-                currentTime = 0;
+                currentShootTime = 0;
                 AmmoDecrease();
             }
         }
 
         public void AmmoDecrease()
         {
+            PlayShootSound();
             AmmoCount--;
             AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
             
         }
 
-        void Reload()
+        private void PlayShootSound()
         {
+            m_AudioSource.clip = shoot;
+            m_AudioSource.Play();
+        }
+
+        IEnumerator Reload()
+        {
+            PlayReloadSound();
+            yield return new WaitForSeconds(reloadTime);
             AmmoCount = MaxAmmo;
             AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
+        }
+
+        private void PlayReloadSound()
+        {
+            m_AudioSource.clip = reload;
+            m_AudioSource.Play();
         }
 
     }

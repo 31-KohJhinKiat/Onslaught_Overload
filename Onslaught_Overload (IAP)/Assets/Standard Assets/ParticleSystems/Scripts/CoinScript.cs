@@ -25,7 +25,7 @@ public class CoinScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
 
-            GameManager.instance.addScore();
+            
             Destroy(this.gameObject);
             print("score");
         }

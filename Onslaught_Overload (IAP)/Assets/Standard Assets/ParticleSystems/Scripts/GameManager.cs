@@ -7,10 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
-    //score
-    private float scoreValue;
-    public Text ScoreText;
 
     //timer
     private float TimerValue;
@@ -98,16 +94,6 @@ public class GameManager : MonoBehaviour
             minutes, seconds, fraction);
         return timerText;
     }
-
-    public void addScore()
-    {
-        audioSource.PlayOneShot(collectSound);
-        scoreValue++;
-        ScoreText.GetComponent<Text>().text = "Score: " + scoreValue;
-        
-    }
-
-    
 
     public void ResumeButton()
     {

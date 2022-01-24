@@ -55,6 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //reload
         public float reloadTime;
         public AudioClip reload;
+        private bool isReloading = false;
 
         //ammo
         public Text AmmoText;
@@ -85,6 +86,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
+            
+
             currentShootTime = currentShootTime + Time.deltaTime;
 
             if (GameManager.instance.pause == false)
@@ -111,7 +114,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_PreviouslyGrounded = m_CharacterController.isGrounded;
             }
 
-            
+            if (isReloading)
+            {
+                return;
+            }
+
             if (Input.GetKey(KeyCode.R))
             {
                     StartCoroutine(Reload());
@@ -341,8 +348,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         IEnumerator Reload()
         {
             PlayReloadSound();
+            isReloading = true;
             yield return new WaitForSeconds(reloadTime);
             AmmoCount = MaxAmmo;
+            isReloading = false;
             AmmoText.GetComponent<Text>().text = "Ammo: " + AmmoCount;
         }
 

@@ -86,9 +86,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            
-
-            currentShootTime = currentShootTime + Time.deltaTime;
 
             if (GameManager.instance.pause == false)
             {
@@ -112,32 +109,34 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
 
                 m_PreviouslyGrounded = m_CharacterController.isGrounded;
-            }
 
-            if (isReloading)
-            {
-                return;
-            }
 
-            if (Input.GetKey(KeyCode.R))
-            {
+                currentShootTime = currentShootTime + Time.deltaTime;
+
+                if (isReloading)
+                {
+                    return;
+                }
+
+                if (Input.GetKey(KeyCode.R))
+                {
                     StartCoroutine(Reload());
                     return;
-    
+
+                }
+
+                if (AmmoCount <= 0)
+                {
+                    return;
+                }
+
+                if (Input.GetMouseButton(0) && canShoot)
+                {
+                    Shoot();
+
+                }
+
             }
-
-            if (AmmoCount <= 0)
-            {
-                return;
-            }
-
-            if (Input.GetMouseButton(0) && canShoot)
-            {
-                Shoot();
-
-            }
-
-
         }
 
 

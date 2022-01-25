@@ -42,9 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.P))
         {
-            pause = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Pause();
         }
 
         if (pause == true)
@@ -100,6 +98,13 @@ public class GameManager : MonoBehaviour
         pause = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void Pause()
+    {
+        pause = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 

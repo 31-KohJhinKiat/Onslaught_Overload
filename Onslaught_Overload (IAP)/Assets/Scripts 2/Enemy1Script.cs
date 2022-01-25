@@ -10,15 +10,16 @@ public class Enemy1Script : MonoBehaviour
     public float damageRate;
 
     //search for player
-    private NavMeshAgent navMeshAgent;
-    private GameObject player;
+    public NavMeshAgent navMeshAgent;
+    public GameObject player;
+    
 
-    public Animator animator;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.isStopped = true;
         animator = GetComponent<Animator>();
@@ -41,7 +42,7 @@ public class Enemy1Script : MonoBehaviour
             {
                 AudioManager.instance.PlayContactedSfx();
                 navMeshAgent.isStopped = false;
-                animator.SetBool("EnemyMoving", true);
+                animator.SetBool("isMoving", true);
             }
 
             navMeshAgent.SetDestination(player.transform.position);
@@ -52,7 +53,7 @@ public class Enemy1Script : MonoBehaviour
             {
                 navMeshAgent.isStopped = true;
                 AudioManager.instance.PlayUnContactedSfx();
-                animator.SetBool("EnemyMoving", false);
+                animator.SetBool("isMoving", false);
             }
         }
 
@@ -62,7 +63,7 @@ public class Enemy1Script : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            animator.SetTrigger("AttackTrigger");
+            animator.SetTrigger("isAttacking");
             //GameManager.instance.MinusHealth(damageRate * Time.deltaTime);
         }
     }

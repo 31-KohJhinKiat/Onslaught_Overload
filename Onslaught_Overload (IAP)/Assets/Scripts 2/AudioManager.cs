@@ -29,13 +29,18 @@ public class AudioManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-
+        audioBgm.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PlayBGM()
+    {
+        audioBgm.Play();
     }
 
     public void PlayContactedSfx()

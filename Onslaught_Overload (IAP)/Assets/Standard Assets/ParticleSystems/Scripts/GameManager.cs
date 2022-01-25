@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void RestartBtn()
+    {
+        //GameLosePanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void SetTimeText(float time)
     {
         TimerText.text = "Timer: " + FormatTime(time);

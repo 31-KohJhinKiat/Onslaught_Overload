@@ -5,66 +5,65 @@ using UnityEngine.AI;
 
 public class Enemy1Script : MonoBehaviour
 {
-    //damage to player
+
+
+    //Search for player
+    public NavMeshAgent Enemy1;
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
+
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    //Attacking
+    public float TimeBetweenAttacks;
+    bool alreadyAttacked;
     public float contactDistance;
     public float damageRate;
 
-    //search for player
-    public NavMeshAgent navMeshAgent;
-    public GameObject player;
-    
+    //States
+    public float sightRange, AttackRange;
+    public bool PlayerInSightRange, PlayerInAttackRange;
 
+    //Animation
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.isStopped = true;
+        
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (GameManager.instance.Pause())
-        {
-            navMeshAgent.isStopped = true;
-            return;
-        }*/
-
-        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
-        if (distanceToPlayer < contactDistance)
-        {
-            if (navMeshAgent.isStopped)
-            {
-                AudioManager.instance.PlayContactedSfx();
-                navMeshAgent.isStopped = false;
-                animator.SetBool("isMoving", true);
-            }
-
-            navMeshAgent.SetDestination(player.transform.position);
-        }
-        else
-        {
-            if (!navMeshAgent.isStopped)
-            {
-                navMeshAgent.isStopped = true;
-                AudioManager.instance.PlayUnContactedSfx();
-                animator.SetBool("isMoving", false);
-            }
-        }
+        //Enemy1.SetDestination(player.position);
 
     }
 
-    private void OnCollisionStay(Collision other)
+    private void Awake()
     {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            animator.SetTrigger("isAttacking");
-            //GameManager.instance.MinusHealth(damageRate * Time.deltaTime);
-        }
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        Enemy1 = GetComponent<NavMeshAgent>();
+        Enemy1.isStopped = false;
     }
+
+    private void Patroling()
+    {
+
+    }
+
+    private void Chaseplayer()
+    {
+
+    }
+
+    private void AttackPlayer()
+    {
+
+    }
+
 }

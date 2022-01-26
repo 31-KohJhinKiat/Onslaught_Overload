@@ -10,7 +10,7 @@ public class Enemy1Script : MonoBehaviour
     //Search for player
     public NavMeshAgent Enemy1;
     public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask WhatIsGround, WhatIsPlayer;
 
     //Patroling
     public Vector3 walkPoint;
@@ -24,7 +24,7 @@ public class Enemy1Script : MonoBehaviour
     public float damageRate;
 
     //States
-    public float sightRange, AttackRange;
+    public float SightRange, AttackRange;
     public bool PlayerInSightRange, PlayerInAttackRange;
 
     //Animation
@@ -41,6 +41,25 @@ public class Enemy1Script : MonoBehaviour
     void Update()
     {
         //Enemy1.SetDestination(player.position);
+        PlayerInSightRange = Physics.CheckSphere(transform.position,
+            SightRange, WhatIsPlayer);
+        PlayerInAttackRange = Physics.CheckSphere(transform.position, 
+            AttackRange, WhatIsPlayer);
+
+        if (!PlayerInSightRange && !PlayerInAttackRange)
+        {
+            Patroling();
+        }
+
+        if (PlayerInSightRange && !PlayerInAttackRange)
+        {
+            Chaseplayer();
+        }
+
+        if (PlayerInSightRange && PlayerInAttackRange)
+        {
+            AttackPlayer();
+        }
 
     }
 
@@ -53,7 +72,30 @@ public class Enemy1Script : MonoBehaviour
 
     private void Patroling()
     {
+        if (!walkPointSet)
+        {
+            SearchWalkPoint();
+        }
 
+        if (walkPointSet)
+        {
+            Enemy1.SetDestination(walkPoint);
+        }
+    }
+
+    private void SearchWalkPoint()
+    {
+        //Calculate random point in range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, 
+            transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, WhatIsGround))
+        {
+            walkPointSet = true;
+        }
     }
 
     private void Chaseplayer()

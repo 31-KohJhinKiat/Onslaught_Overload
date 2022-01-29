@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public bool pause;
     public GameObject panel;
 
+    //health
+    private GameObject Player;
+    public GameObject healthBar;
+    public float healthCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,15 +76,27 @@ public class GameManager : MonoBehaviour
 
         }
 
-
-
     }
 
-    public void RestartBtn()
+    public void UpdateHealthSlider(float health)
     {
-        //GameLosePanel.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        healthBar.GetComponent<Slider>().value = health;
     }
+
+    public void MinusHealth(float minusHealthValue)
+    {
+        healthCount -= minusHealthValue;
+        //AudioManager.instance.PlayDamageSfx();
+
+        if (healthCount < 0)
+        {
+            healthCount = 0;
+            //SetGameOver(false);
+        }
+
+        UpdateHealthSlider(healthCount);
+    }
+
 
     public void SetTimeText(float time)
     {
@@ -113,5 +130,10 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void RestartBtn()
+    {
+        //GameLosePanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 }

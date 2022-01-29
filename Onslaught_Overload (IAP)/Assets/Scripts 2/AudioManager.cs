@@ -10,12 +10,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip pointSfx;
     public AudioClip contactedSfx;
     public AudioClip uncontactedSfx;
-    public AudioClip doorSfx;
-    public AudioClip errorSfx;
     public AudioClip gameWinSfx;
     public AudioClip gameLoseSfx;
     public AudioClip healthSfx;
     public AudioClip DamageSfx;
+    public AudioClip shootSfx;
+    public AudioClip reloadSfx;
 
     private AudioSource audioSource;
 
@@ -51,5 +51,15 @@ public class AudioManager : MonoBehaviour
     public void PlayUnContactedSfx()
     {
         audioSource.PlayOneShot(uncontactedSfx);
+    }
+
+    public void PlayShootSfx()
+    {
+        audioSource.PlayOneShot(shootSfx);
+    }
+
+    public void PlayReloadSfx()
+    {
+        audioSource.PlayOneShot(reloadSfx);
     }
 }

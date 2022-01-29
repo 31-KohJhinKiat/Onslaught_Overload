@@ -5,27 +5,24 @@ using UnityEngine.AI;
 
 public class Enemy1Script : MonoBehaviour
 {
-
+    //Enemy health
+    public int enemy1Health;
 
     //Search for player
     public NavMeshAgent Enemy1;
     public Transform player;
-    public LayerMask WhatIsGround, WhatIsPlayer;
-
-    //Patroling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
 
     //Attacking
-    public float TimeBetweenAttacks;
-    bool alreadyAttacked;
+    public float DamageRate;
+    private bool canAttack;
     public float contactDistance;
-    public float damageRate;
+    public float TimeBetweenAttacks;
+    private float currentAttackTime1 = 0.0f;
 
-    //States
-    public float SightRange, AttackRange;
-    public bool PlayerInSightRange, PlayerInAttackRange;
+    //Sounds
+    public AudioSource audioSource;
+    public AudioClip walkSound;
+    public AudioClip punchSound;
 
     //Animation
     private Animator animator;
@@ -33,79 +30,50 @@ public class Enemy1Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Enemy1 = GetComponent<NavMeshAgent>();
+        Enemy1.isStopped = false;
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Enemy1.SetDestination(player.position);
-        PlayerInSightRange = Physics.CheckSphere(transform.position,
-            SightRange, WhatIsPlayer);
-        PlayerInAttackRange = Physics.CheckSphere(transform.position, 
-            AttackRange, WhatIsPlayer);
-
-        if (!PlayerInSightRange && !PlayerInAttackRange)
+        if (GameManager.instance.pause == true)
         {
-            Patroling();
+            canAttack = false;
+            animator.SetBool("isMoving", false);
+            return;
         }
-
-        if (PlayerInSightRange && !PlayerInAttackRange)
+        else if (GameManager.instance.pause == false)
         {
-            Chaseplayer();
-        }
-
-        if (PlayerInSightRange && PlayerInAttackRange)
-        {
-            AttackPlayer();
+            currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
+            Enemy1.SetDestination(player.position);
+            //audioSource.PlayOneShot(walkSound);
+            animator.SetBool("isMoving", true);
         }
 
     }
 
-    private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        Enemy1 = GetComponent<NavMeshAgent>();
-        Enemy1.isStopped = false;
-    }
 
-    private void Patroling()
+    private void OnCollisionEnter(Collision other)
     {
-        if (!walkPointSet)
+        if (other.gameObject.tag.Equals("Player") && !canAttack)
         {
-            SearchWalkPoint();
+            animator.SetBool("isMoving", false);
+            canAttack = true;
+
+            if (currentAttackTime1 >= TimeBetweenAttacks)
+            {
+                currentAttackTime1 = 0;
+                GameManager.instance.MinusHealth(DamageRate * Time.deltaTime);                              
+                animator.SetTrigger("isAttacking");
+                audioSource.PlayOneShot(punchSound);              
+                canAttack = false;
+            }
+                
+
         }
-
-        if (walkPointSet)
-        {
-            Enemy1.SetDestination(walkPoint);
-        }
-    }
-
-    private void SearchWalkPoint()
-    {
-        //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, 
-            transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, WhatIsGround))
-        {
-            walkPointSet = true;
-        }
-    }
-
-    private void Chaseplayer()
-    {
-
-    }
-
-    private void AttackPlayer()
-    {
-
     }
 
 }

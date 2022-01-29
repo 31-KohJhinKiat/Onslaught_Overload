@@ -24,14 +24,19 @@ public class BulletScript : MonoBehaviour
 
         transform.position += transform.forward * BulletSpeed * Time.deltaTime;
         timeCreated += Time.deltaTime;
-        if (timeCreated == 5)
+        if (timeCreated >= 5)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
+
+
 }

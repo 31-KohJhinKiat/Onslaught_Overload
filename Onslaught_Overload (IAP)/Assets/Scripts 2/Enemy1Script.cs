@@ -31,6 +31,7 @@ public class Enemy1Script : MonoBehaviour
     void Start()
     {
         Enemy1 = GetComponent<NavMeshAgent>();
+        canAttack = false;
         Enemy1.isStopped = false;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -42,23 +43,45 @@ public class Enemy1Script : MonoBehaviour
         if (GameManager.instance.pause == true)
         {
             canAttack = false;
+            Enemy1.isStopped = true;
             animator.SetBool("isMoving", false);
             return;
         }
         else if (GameManager.instance.pause == false)
         {
             currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
-            Enemy1.SetDestination(player.position);
-            //audioSource.PlayOneShot(walkSound);
-            animator.SetBool("isMoving", true);
+
+            if (canAttack == false)
+            {
+                print("moving");
+                Enemy1.SetDestination(player.position);
+                //audioSource.PlayOneShot(walkSound);
+                animator.SetBool("isMoving", true);
+            }
+            
         }
 
     }
 
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.tag.Equals("Player") && !canAttack)
+        if (collision.gameObject.tag.Equals("Bullet"))
+        {
+            enemy1Health--;
+            Destroy(collision.gameObject);
+
+            if (enemy1Health <= 0)
+            {
+                Destroy(gameObject);
+                
+            }
+        }
+    }
+
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag.Equals("Player") )
         {
             animator.SetBool("isMoving", false);
             canAttack = true;
@@ -66,14 +89,23 @@ public class Enemy1Script : MonoBehaviour
             if (currentAttackTime1 >= TimeBetweenAttacks)
             {
                 currentAttackTime1 = 0;
-                GameManager.instance.MinusHealth(DamageRate * Time.deltaTime);                              
+                GameManager.instance.MinusHealth(DamageRate);                              
                 animator.SetTrigger("isAttacking");
                 audioSource.PlayOneShot(punchSound);              
-                canAttack = false;
-            }
-                
 
+            }
+            
+            
         }
+       
+
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        canAttack = false;
+    }
+
+
 
 }

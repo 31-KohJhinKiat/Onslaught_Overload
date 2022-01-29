@@ -51,6 +51,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float waitTime = 0.1f;        
         private float currentShootTime = 0.0f;
         public AudioClip shoot;
+        
 
         //reload
         public float reloadTime;

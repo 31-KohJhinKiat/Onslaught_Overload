@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4417071945547739324}
   - component: {fileID: -3056115640119218668}
   m_Layer: 8
-  m_Name: blueLaser
-  m_TagString: Untagged
+  m_Name: bluePlasma
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57cb97a78a67454b9fa36177cbbf439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 100
+  BulletSpeed: 50
 --- !u!1 &4417071947042080025
 GameObject:
   m_ObjectHideFlags: 0

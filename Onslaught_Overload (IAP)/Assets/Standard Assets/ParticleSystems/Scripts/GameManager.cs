@@ -16,15 +16,21 @@ public class GameManager : MonoBehaviour
 
     //audio
     private AudioSource audioSource;
-    public AudioClip collectSound;
+    public AudioClip damageSound;
+
 
     //pause
     public bool pause;
     public GameObject panel;
 
     //win
+    public bool Win;
+    public GameObject winPanel;
+
 
     //lose
+    public bool Lose;
+    public GameObject losePanel;
 
     //crosshairs
     public GameObject crosshairs;
@@ -41,8 +47,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        
 
         audioSource = GetComponent<AudioSource>();
 
@@ -96,7 +100,8 @@ public class GameManager : MonoBehaviour
     public void MinusHealth(float minusHealthValue)
     {
         healthCount -= minusHealthValue;
-        //AudioManager.instance.PlayDamageSfx();
+        audioSource.PlayOneShot(damageSound);
+        
 
         if (healthCount < 0)
         {

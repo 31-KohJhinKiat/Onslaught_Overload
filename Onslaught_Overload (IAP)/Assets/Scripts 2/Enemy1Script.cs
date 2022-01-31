@@ -23,7 +23,7 @@ public class Enemy1Script : MonoBehaviour
     public AudioClip walkSound;
     public AudioClip punchSound;
     public AudioClip damageSound;
-    //public AudioClip explosionSound;
+    public AudioClip explosionSound;
 
     //Animation
     private Animator animator;
@@ -86,10 +86,8 @@ public class Enemy1Script : MonoBehaviour
 
             if (enemy1Health <= 0)
             {
-
-                StartCoroutine(dyingSecond());
-                //Destroy(gameObject);
-
+                audioSource.PlayOneShot(explosionSound);
+                StartCoroutine(dyingSecond());                           
             }
         }
     }
@@ -133,11 +131,9 @@ public class Enemy1Script : MonoBehaviour
     }*/
     IEnumerator dyingSecond()
     {
-        print("is dead");
         //canMove = false;
-
-        //AudioManager.instance.(PlayExplosionSfx);
-        yield return new WaitForSeconds(2.0f);
+               
+        yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
 
     }

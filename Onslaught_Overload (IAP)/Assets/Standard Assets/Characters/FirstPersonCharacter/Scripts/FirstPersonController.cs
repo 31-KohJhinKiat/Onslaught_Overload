@@ -52,7 +52,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float currentShootTime = 0.0f;
         public AudioClip shoot;
         
-
         //reload
         public float reloadTime;
         public AudioClip reload;
@@ -360,6 +359,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.clip = reload;
             m_AudioSource.Play();
         }
+
+
 
     }
 }

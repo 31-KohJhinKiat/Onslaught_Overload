@@ -22,6 +22,13 @@ public class GameManager : MonoBehaviour
     public bool pause;
     public GameObject panel;
 
+    //win
+
+    //lose
+
+    //crosshairs
+    public GameObject crosshairs;
+
     //health
     private GameObject Player;
     public GameObject healthBar;
@@ -40,6 +47,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         pause = false;
+        
     }
 
     // Update is called once per frame
@@ -52,12 +60,14 @@ public class GameManager : MonoBehaviour
 
         if (pause == true)
         {
-
+            crosshairs.SetActive(false);
             panel.SetActive(true);
+            
 
         }
         else
         {
+            crosshairs.SetActive(true);
             panel.SetActive(false);
 
             if (levelTime > 0)

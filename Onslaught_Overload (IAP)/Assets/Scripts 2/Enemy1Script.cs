@@ -50,6 +50,7 @@ public class Enemy1Script : MonoBehaviour
         else if (GameManager.instance.pause == false)
         {
             currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
+            Enemy1.isStopped = false;
 
             if (canAttack == false)
             {

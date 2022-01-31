@@ -39,6 +39,27 @@ public class Enemy2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.instance.pause == true)
+        {
+            canAttack = false;
+            Enemy2.isStopped = true;
+
+            return;
+        }
+        else if (GameManager.instance.pause == false)
+        {
+            currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
+            Enemy2.isStopped = false;
+
+            if (canAttack == false)
+            {
+                print("moving");
+                //canMove = true;
+                //audioSource.PlayOneShot(walkSound);
+                Enemy2.SetDestination(player.position);
+
+            }
+
+        }
     }
 }

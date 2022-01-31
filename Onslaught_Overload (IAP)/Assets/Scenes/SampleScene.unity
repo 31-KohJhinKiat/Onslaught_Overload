@@ -161,6 +161,7 @@ MonoBehaviour:
   DamageSfx: {fileID: 8300000, guid: 2a11b25ee0cdeca4397fce18d754fcef, type: 3}
   shootSfx: {fileID: 8300000, guid: 2220f6626f6dc0c4b8588501193d2ba5, type: 3}
   reloadSfx: {fileID: 8300000, guid: 24b33b0abef3b104aa03e8d7919c1283, type: 3}
+  explosionSfx: {fileID: 0}
 --- !u!4 &24969024
 Transform:
   m_ObjectHideFlags: 0
@@ -2264,7 +2265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4356,6 +4357,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1487633605}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Explosion
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a11b25ee0cdeca4397fce18d754fcef, type: 3}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9cee808030b2b604fb1bbd67303595d3, type: 3}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4394,7 +4410,7 @@ PrefabInstance:
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}

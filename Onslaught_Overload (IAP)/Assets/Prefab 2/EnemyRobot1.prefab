@@ -569,6 +569,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   walkSound: {fileID: 8300000, guid: e0ae5494145903d4a8709ce0a126ce5d, type: 3}
   punchSound: {fileID: 8300000, guid: 92b866b926798ed45b49a50a5cbec7b5, type: 3}
+  Explosion: {fileID: 0}
 --- !u!1 &5454016089066975741
 GameObject:
   m_ObjectHideFlags: 0

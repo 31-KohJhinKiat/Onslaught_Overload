@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip DamageSfx;
     public AudioClip shootSfx;
     public AudioClip reloadSfx;
+    public AudioClip explosionSfx;
 
     private AudioSource audioSource;
 
@@ -61,5 +62,10 @@ public class AudioManager : MonoBehaviour
     public void PlayReloadSfx()
     {
         audioSource.PlayOneShot(reloadSfx);
+    }
+
+    public void PlayExplosionSFX()
+    {
+        audioSource.PlayOneShot(explosionSfx);
     }
 }

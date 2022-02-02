@@ -29,7 +29,7 @@ public class Enemy1Script : MonoBehaviour
     private Animator animator;
 
     //explosion
-    //public ParticleSystem Explosion;
+    public ParticleSystem Explosion;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class Enemy1Script : MonoBehaviour
         Enemy1.isStopped = false;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        //ExplosionOff();
+        ExplosionOff();
     }
 
     // Update is called once per frame
@@ -121,19 +121,19 @@ public class Enemy1Script : MonoBehaviour
     }
 
 
-    /*public void ExplosionOn()
+    public void ExplosionOn()
     {
         Explosion.Play();
     }
     public void ExplosionOff()
     {
         Explosion.Stop();
-    }*/
+    }
     IEnumerator dyingSecond()
     {
         //canMove = false;
-               
-        yield return new WaitForSeconds(2.5f);
+        ExplosionOn();       
+        yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);
 
     }

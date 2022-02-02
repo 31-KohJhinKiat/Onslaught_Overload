@@ -20,8 +20,8 @@ public class Enemy2Script : MonoBehaviour
 
     //Sounds
     public AudioSource audioSource;
-    public AudioClip walkSound;
-    public AudioClip punchSound;
+    public AudioClip hoverSound;
+    public AudioClip damageSound;
     public AudioClip shootSound;
     public AudioClip explosionSound;
 

@@ -18,6 +18,7 @@ public class ProtoEnemyScript2 : MonoBehaviour
     void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(FOVRoutine());
     }
 
     // Update is called once per frame
@@ -42,36 +43,43 @@ public class ProtoEnemyScript2 : MonoBehaviour
         Collider[] rangeChecks = 
             Physics.OverlapSphere(transform.position, 
             radius, targetMask);
+        
 
-        if(rangeChecks.Length != 0)
+        if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - 
                 transform.position).normalized;
+            print("seek out 5");
 
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = 
                     Vector3.Distance(transform.position, target.position);
+                print("seek out 1");
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
+                    print("hunt");
                 }
                 else
                 {
                     canSeePlayer = false;
+                    print("seek out 2");
                 }
             }
             else
             {
                 canSeePlayer = false;
+                print("seek out 3");
             }
 
         }
         else if(canSeePlayer)
         {
             canSeePlayer = false;
+            print("seek out 4");
         }
     }
 

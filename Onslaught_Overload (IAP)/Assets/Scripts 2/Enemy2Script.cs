@@ -12,9 +12,7 @@ public class Enemy2Script : MonoBehaviour
     public NavMeshAgent Enemy2;
     public Transform player;
     //private bool canMove;
-    public float DamageRate;
     private bool canAttack;
-    public float contactDistance;
     public float TimeBetweenAttacks;
     private float currentAttackTime2 = 0.0f;
 
@@ -24,6 +22,10 @@ public class Enemy2Script : MonoBehaviour
     public AudioClip damageSound;
     public AudioClip shootSound;
     public AudioClip explosionSound;
+
+    //Weapon
+    public GameObject enemyBullet;
+    public GameObject cannon;
 
     //explosion
     public ParticleSystem Explosion;
@@ -54,12 +56,18 @@ public class Enemy2Script : MonoBehaviour
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
             Enemy2.isStopped = false;
 
-            if (canAttack == false)
+
+           print("moving");
+           //canMove = true;
+           //audioSource.PlayOneShot(walkSound);
+           Enemy2.SetDestination(player.position);
+
+            if (currentAttackTime2 >= TimeBetweenAttacks)
             {
-                print("moving");
-                //canMove = true;
-                //audioSource.PlayOneShot(walkSound);
-                Enemy2.SetDestination(player.position);
+                currentAttackTime2 = 0;
+                Instantiate(enemyBullet, cannon.transform.position,
+                cannon.transform.rotation);
+                audioSource.PlayOneShot(shootSound);
 
             }
 
@@ -82,31 +90,19 @@ public class Enemy2Script : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
 
-            canAttack = true;
-
-            if (currentAttackTime2 >= TimeBetweenAttacks)
-            {
-                currentAttackTime2 = 0;
-                GameManager.instance.MinusHealth(DamageRate);
-                audioSource.PlayOneShot(shootSound);
-
-            }
-
+            Enemy2.isStopped = true;
 
         }
 
 
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        canAttack = false;
-    }
+
 
 
     public void ExplosionOn()

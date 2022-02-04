@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+    
+
     public void UpdateHealthSlider(float health)
     {
         healthBar.GetComponent<Slider>().value = health;
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
         if (healthCount < 0)
         {
             healthCount = 0;
-            //SetGameOver(false);
+            losePanel.SetActive(true);
         }
 
         UpdateHealthSlider(healthCount);

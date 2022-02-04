@@ -14,7 +14,6 @@ public class Enemy1Script : MonoBehaviour
     //private bool canMove;
     public float DamageRate;
     private bool canAttack;
-    public float contactDistance;
     public float TimeBetweenAttacks;
     private float currentAttackTime1 = 0.0f;
 

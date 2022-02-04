@@ -318,13 +318,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Shoot()
         {
             if (currentShootTime >= waitTime)
-            {
-                //m_audioSource.PlayOneShot(shoot);
+            {              
                 Instantiate(bullet, gun.transform.position,
                 gun.transform.rotation);
-                /*GameObject instBullet = Instantiate(bullet, gun.transform.position, Quaternion.identity);
-               */
-
+             
                 currentShootTime = 0;
                 AmmoDecrease();
             }
@@ -360,7 +357,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.Play();
         }
 
-
+        public void OntriggerEnter(Collider Collision)
+        {
+            if (Collision.gameObject.tag.Equals("EnemyBullet"))
+            {
+                print("player recives damage");
+                GameManager.instance.MinusHealth(5);
+                Destroy(Collision.gameObject);
+            }
+        }
 
     }
 }

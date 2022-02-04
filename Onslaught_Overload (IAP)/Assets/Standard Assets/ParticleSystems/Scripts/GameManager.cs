@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public bool Win;
     public GameObject winPanel;
 
-
     //lose
     public bool Lose;
     public GameObject losePanel;
@@ -51,7 +50,8 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         pause = false;
-        
+        winPanel.SetActive(false);
+        losePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             {
                 levelTime = 0;
                 print("Times up!");
+                losePanel.SetActive(true);
 
             }
 

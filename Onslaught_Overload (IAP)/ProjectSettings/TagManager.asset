@@ -10,6 +10,7 @@ TagManager:
   - Laser
   - Bullet
   - EnemyBullet
+  - EndGoal
   layers:
   - Default
   - TransparentFX

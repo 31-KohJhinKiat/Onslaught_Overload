@@ -131,6 +131,7 @@ public class Enemy1Script : MonoBehaviour
     IEnumerator dyingSecond()
     {
         //canMove = false;
+        Enemy1.isStopped = true;
         ExplosionOn();       
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);

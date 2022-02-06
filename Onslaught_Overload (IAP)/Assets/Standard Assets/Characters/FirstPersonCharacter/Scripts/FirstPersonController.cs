@@ -62,6 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float AmmoCount;
         private float MaxAmmo;
 
+
         // Use this for initialization
         private void Start()
         {
@@ -357,13 +358,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.Play();
         }
 
-        public void OntriggerEnter(Collider Collision)
+        public void OntriggerEnter(Collider other)
         {
-            if (Collision.gameObject.tag.Equals("EnemyBullet"))
+            if (other.gameObject.tag.Equals("EnemyBullet"))
             {
                 print("player recives damage");
-                GameManager.instance.MinusHealth(5);
-                Destroy(Collision.gameObject);
+                GameManager.instance.MinusHealth(20);
+                Destroy(gameObject);
             }
         }
 

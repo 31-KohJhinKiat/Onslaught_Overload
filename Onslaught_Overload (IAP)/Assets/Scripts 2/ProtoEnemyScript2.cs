@@ -50,7 +50,7 @@ public class ProtoEnemyScript2 : MonoBehaviour
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - 
                 transform.position).normalized;
-            print("seek out 5");
+
 
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
@@ -72,7 +72,7 @@ public class ProtoEnemyScript2 : MonoBehaviour
             else
             {
                 canSeePlayer = false;
-                print("seek out 3");
+
             }
 
         }

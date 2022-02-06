@@ -61,6 +61,7 @@ public class Enemy2Script : MonoBehaviour
            //canMove = true;
            //audioSource.PlayOneShot(walkSound);
            Enemy2.SetDestination(player.position);
+           
 
             if (currentAttackTime2 >= TimeBetweenAttacks)
             {
@@ -116,6 +117,7 @@ public class Enemy2Script : MonoBehaviour
     IEnumerator dyingSecond()
     {
         //canMove = false;
+        Enemy2.isStopped = true;
         ExplosionOn();
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);

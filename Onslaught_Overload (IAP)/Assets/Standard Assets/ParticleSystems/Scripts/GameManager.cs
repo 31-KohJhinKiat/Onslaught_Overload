@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             {
                 levelTime = 0;
                 print("Times up!");
+                crosshairs.SetActive(false);
                 losePanel.SetActive(true);
 
             }
@@ -106,15 +107,30 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(damageSound);
         
 
-        if (healthCount < 0)
+        if (healthCount <= 0)
         {
             healthCount = 0;
+            crosshairs.SetActive(false);
+
             losePanel.SetActive(true);
         }
 
         UpdateHealthSlider(healthCount);
     }
 
+    public void PlusHealth(float plusHealthValue)
+    {
+        healthCount -= plusHealthValue;
+        audioSource.PlayOneShot(damageSound);
+
+
+        if (healthCount >= 100)
+        {
+            healthCount = 100;
+        }
+
+        UpdateHealthSlider(healthCount);
+    }
 
     public void SetTimeText(float time)
     {
@@ -146,6 +162,16 @@ public class GameManager : MonoBehaviour
         pause = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void LoseGame()
+    {
+
+    }
+
+    public void WinGame()
+    {
+
     }
 
     public void RestartBtn()

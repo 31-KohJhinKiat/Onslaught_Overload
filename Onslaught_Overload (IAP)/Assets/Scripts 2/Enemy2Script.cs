@@ -54,7 +54,6 @@ public class Enemy2Script : MonoBehaviour
         else if (GameManager.instance.pause == false)
         {
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
-            Enemy2.isStopped = false;
 
 
            print("moving");

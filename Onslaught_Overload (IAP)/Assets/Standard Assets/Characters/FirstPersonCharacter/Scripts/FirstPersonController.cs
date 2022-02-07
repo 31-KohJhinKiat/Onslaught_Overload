@@ -375,7 +375,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 print("player heals");
                 Destroy(gameObject);
             }
+
+
+
         }
+
+
 
     }
 }

@@ -368,5 +368,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag.Equals("Heal"))
+            {
+                print("player heals");
+                Destroy(gameObject);
+            }
+        }
+
     }
 }

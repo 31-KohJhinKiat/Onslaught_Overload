@@ -7,11 +7,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioSource audioBgm;
     public AudioClip gameBgm;
-    public AudioClip pointSfx;
-    public AudioClip contactedSfx;
-    public AudioClip uncontactedSfx;
-    public AudioClip gameWinSfx;
-    public AudioClip gameLoseSfx;
     public AudioClip healthSfx;
     public AudioClip DamageSfx;
     public AudioClip shootSfx;
@@ -42,16 +37,6 @@ public class AudioManager : MonoBehaviour
     public void PlayBGM()
     {
         audioBgm.Play();
-    }
-
-    public void PlayContactedSfx()
-    {
-        audioSource.PlayOneShot(contactedSfx);
-    }
-
-    public void PlayUnContactedSfx()
-    {
-        audioSource.PlayOneShot(uncontactedSfx);
     }
 
     public void PlayShootSfx()

@@ -16,9 +16,9 @@ public class Enemy2Script : MonoBehaviour
     public float TimeBetweenAttacks;
     private float currentAttackTime2 = 0.0f;
 
+
     //Sounds
     public AudioSource audioSource;
-    public AudioClip hoverSound;
     public AudioClip damageSound;
     public AudioClip shootSound;
     public AudioClip explosionSound;
@@ -44,21 +44,17 @@ public class Enemy2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true)
+        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
         {
-            canAttack = false;
-            Enemy2.isStopped = true;
 
+            Enemy2.isStopped = true;
             return;
         }
-        else if (GameManager.instance.pause == false)
+        else
         {
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
 
-
            print("moving");
-           //canMove = true;
-           //audioSource.PlayOneShot(walkSound);
            Enemy2.SetDestination(player.position);
            
 
@@ -90,7 +86,7 @@ public class Enemy2Script : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    /*private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
@@ -100,7 +96,7 @@ public class Enemy2Script : MonoBehaviour
         }
 
 
-    }
+    } */
 
 
 

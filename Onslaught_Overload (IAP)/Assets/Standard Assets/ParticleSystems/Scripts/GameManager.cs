@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     //audio
     private AudioSource audioSource;
     public AudioClip damageSound;
-
+    public AudioClip healSound;
+    public AudioClip winSound;
+    public AudioClip loseSound;
 
     //pause
     public bool pause;
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
         pause = false;
         winPanel.SetActive(false);
         losePanel.SetActive(false);
+        crosshairs.SetActive(true);
     }
 
     // Update is called once per frame
@@ -84,12 +87,15 @@ public class GameManager : MonoBehaviour
             {
                 levelTime = 0;
                 print("Times up!");
-                crosshairs.SetActive(false);
-                losePanel.SetActive(true);
+                Lose = true;
 
             }
 
+        }
 
+        if (Lose == true)
+        {
+            LoseGame();
         }
 
     }
@@ -110,9 +116,8 @@ public class GameManager : MonoBehaviour
         if (healthCount <= 0)
         {
             healthCount = 0;
-            crosshairs.SetActive(false);
-
-            losePanel.SetActive(true);
+            Lose = true;
+            
         }
 
         UpdateHealthSlider(healthCount);
@@ -120,8 +125,8 @@ public class GameManager : MonoBehaviour
 
     public void PlusHealth(float plusHealthValue)
     {
-        healthCount -= plusHealthValue;
-        audioSource.PlayOneShot(damageSound);
+        healthCount += plusHealthValue;
+        audioSource.PlayOneShot(healSound);
 
 
         if (healthCount >= 100)
@@ -166,17 +171,25 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
-
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshairs.SetActive(false);
+        losePanel.SetActive(true);        
     }
 
     public void WinGame()
     {
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshairs.SetActive(false);
+        winPanel.SetActive(true);
+       
     }
 
     public void RestartBtn()
     {
-        //GameLosePanel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

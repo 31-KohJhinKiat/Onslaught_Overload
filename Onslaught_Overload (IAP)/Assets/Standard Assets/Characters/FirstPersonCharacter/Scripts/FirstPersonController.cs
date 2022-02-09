@@ -373,9 +373,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (collision.gameObject.tag.Equals("Heal"))
             {
                 print("player heals");
-                Destroy(gameObject);
+                GameManager.instance.PlusHealth(50);
+                Destroy(collision.gameObject);
             }
 
+            if (collision.gameObject.tag.Equals("EndGoal"))
+            {
+                print("win");
+                GameManager.instance.WinGame();
+            }
 
 
         }

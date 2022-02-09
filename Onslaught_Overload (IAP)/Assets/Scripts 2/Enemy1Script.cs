@@ -17,9 +17,9 @@ public class Enemy1Script : MonoBehaviour
     public float TimeBetweenAttacks;
     private float currentAttackTime1 = 0.0f;
 
+
     //Sounds
     public AudioSource audioSource;
-    public AudioClip walkSound;
     public AudioClip punchSound;
     public AudioClip damageSound;
     public AudioClip explosionSound;
@@ -45,23 +45,23 @@ public class Enemy1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true)
+        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
         {
             canAttack = false;
             Enemy1.isStopped = true;
             animator.SetBool("isMoving", false);
             return;
         }
-        else if (GameManager.instance.pause == false)
+        else
         {
             currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
+            
             Enemy1.isStopped = false;
 
             if (canAttack == false)
             {
                 print("moving");
                 //canMove = true;
-                //audioSource.PlayOneShot(walkSound);
                 Enemy1.SetDestination(player.position);
                 animator.SetBool("isMoving", true);
             }
@@ -118,6 +118,7 @@ public class Enemy1Script : MonoBehaviour
     {
         canAttack = false;
     }
+
 
 
     public void ExplosionOn()

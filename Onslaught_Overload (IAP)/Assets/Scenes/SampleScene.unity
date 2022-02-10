@@ -716,7 +716,7 @@ MonoBehaviour:
   winSound: {fileID: 0}
   loseSound: {fileID: 0}
   pause: 0
-  panel: {fileID: 204774452}
+  pausePanel: {fileID: 204774452}
   Win: 0
   winPanel: {fileID: 1447857207}
   Lose: 0
@@ -5650,6 +5650,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844689033}
   m_CullTransparentMesh: 0
+--- !u!1 &1867946263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867946264}
+  m_Layer: 0
+  m_Name: TargetPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867946264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867946263}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1487633605}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878701812
 GameObject:
   m_ObjectHideFlags: 0
@@ -6394,6 +6424,11 @@ PrefabInstance:
       propertyPath: TimeBetweenAttacks
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: TargetPlayer
+      value: 
+      objectReference: {fileID: 1867946264}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: m_Name

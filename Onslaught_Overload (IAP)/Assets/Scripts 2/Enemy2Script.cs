@@ -54,10 +54,15 @@ public class Enemy2Script : MonoBehaviour
         {
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
 
-           print("moving");
-           Enemy2.SetDestination(player.position);
-           
+            //Look at player
+            Vector3 direction = player.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = rotation;
 
+            //Follow player
+           Enemy2.SetDestination(player.position);           
+
+            //Shoot player
             if (currentAttackTime2 >= TimeBetweenAttacks)
             {
                 currentAttackTime2 = 0;

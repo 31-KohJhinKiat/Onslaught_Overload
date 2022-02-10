@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     //pause
     public bool pause;
-    public GameObject panel;
+    public GameObject pausePanel;
 
     //win
     public bool Win;
@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         pause = false;
+        Win = false;
+        Lose = false;
+        pausePanel.SetActive(false);
         winPanel.SetActive(false);
         losePanel.SetActive(false);
         crosshairs.SetActive(true);
@@ -68,14 +71,14 @@ public class GameManager : MonoBehaviour
         if (pause == true)
         {
             crosshairs.SetActive(false);
-            panel.SetActive(true);
+            pausePanel.SetActive(true);
             
 
         }
         else
         {
             crosshairs.SetActive(true);
-            panel.SetActive(false);
+            pausePanel.SetActive(false);
 
             if (levelTime > 0)
             {
@@ -96,6 +99,11 @@ public class GameManager : MonoBehaviour
         if (Lose == true)
         {
             LoseGame();
+        }
+
+        if (Win == true)
+        {
+            WinGame();
         }
 
     }

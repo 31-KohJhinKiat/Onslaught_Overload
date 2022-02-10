@@ -44,7 +44,7 @@ public class Enemy2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
+        if (GameManager.instance.pause == true)
         {
 
             Enemy2.isStopped = true;
@@ -54,10 +54,7 @@ public class Enemy2Script : MonoBehaviour
         {
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
 
-            //Look at player
-            Vector3 direction = player.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = rotation;
+            
 
             //Follow player
            Enemy2.SetDestination(player.position);           

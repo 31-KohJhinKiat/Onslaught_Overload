@@ -55,8 +55,6 @@ public class GameManager : MonoBehaviour
         Win = false;
         Lose = false;
         pausePanel.SetActive(false);
-        winPanel.SetActive(false);
-        losePanel.SetActive(false);
         crosshairs.SetActive(true);
     }
 

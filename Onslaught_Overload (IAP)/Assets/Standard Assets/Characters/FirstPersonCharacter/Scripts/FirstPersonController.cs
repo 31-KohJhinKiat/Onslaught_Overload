@@ -364,16 +364,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.Play();
         }
 
-        public void OntriggerEnter(Collider Collision)
-        {
-            if (Collision.gameObject.tag.Equals("EnemyBullet"))
-            {
-                print("player recives damage");
-                GameManager.instance.MinusHealth(damageRecived);
-                Destroy(Collision.gameObject);
-            }
-        }
-
         public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag.Equals("Heal"))

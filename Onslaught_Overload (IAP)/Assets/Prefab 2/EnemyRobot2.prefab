@@ -250,8 +250,7 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 2a11b25ee0cdeca4397fce18d754fcef, type: 3}
   shootSound: {fileID: 8300000, guid: 5a443104ba5f47d45b4ce3badca6bfd9, type: 3}
   explosionSound: {fileID: 8300000, guid: 9cee808030b2b604fb1bbd67303595d3, type: 3}
-  enemyBullet: {fileID: 4140742044250768109, guid: 336f32e347ed6b14f8bf049846d0b9cc,
-    type: 3}
+  enemyBullet: {fileID: 0}
   cannon: {fileID: 4096268623717606762}
   Explosion: {fileID: 5072549044268027996}
 --- !u!1 &4097582189775926206

@@ -17,7 +17,7 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
+        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
         {
             return;
         }

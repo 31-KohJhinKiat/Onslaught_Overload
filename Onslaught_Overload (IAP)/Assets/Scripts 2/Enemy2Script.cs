@@ -35,7 +35,6 @@ public class Enemy2Script : MonoBehaviour
     {
         Enemy2 = GetComponent<NavMeshAgent>();
         //canMove = false;
-        canAttack = false;
         Enemy2.isStopped = false;
         audioSource = GetComponent<AudioSource>();
         ExplosionOff();
@@ -44,20 +43,20 @@ public class Enemy2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true)
+        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
         {
-
-            Enemy2.isStopped = true;
+            //Enemy2.isStopped = true;
+            Enemy2.enabled = false; // Use this to disable the navmesh agent.
+            // LAter on to unpause, we set to true;
             return;
         }
         else
         {
+            Enemy2.enabled = true;
             currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
 
-            
-
             //Follow player
-           Enemy2.SetDestination(player.position);           
+            Enemy2.SetDestination(player.position);           
 
             //Shoot player
             if (currentAttackTime2 >= TimeBetweenAttacks)
@@ -66,9 +65,7 @@ public class Enemy2Script : MonoBehaviour
                 Instantiate(enemyBullet, cannon.transform.position,
                 cannon.transform.rotation);
                 audioSource.PlayOneShot(shootSound);
-
             }
-
         }
     }
 

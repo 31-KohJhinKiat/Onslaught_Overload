@@ -45,7 +45,7 @@ public class Enemy1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
+        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
         {
             canAttack = false;
             Enemy1.isStopped = true;
@@ -60,18 +60,11 @@ public class Enemy1Script : MonoBehaviour
 
             if (canAttack == false)
             {
-                print("moving");
-                //canMove = true;
                 Enemy1.SetDestination(player.position);
                 animator.SetBool("isMoving", true);
             }
             
         }
-
-        /*if (canMove == true)
-        {
-            Enemy1.SetDestination(player.position);
-        } */
 
     }
 

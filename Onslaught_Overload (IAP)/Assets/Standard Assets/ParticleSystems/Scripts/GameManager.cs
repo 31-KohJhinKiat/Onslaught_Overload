@@ -25,12 +25,10 @@ public class GameManager : MonoBehaviour
     public bool pause;
     public GameObject pausePanel;
 
-    //win
-    public bool Win;
-    public GameObject winPanel;
-
-    //lose
-    public bool Lose;
+    //win and lose
+    public bool isGameWin;
+    public GameObject winPanel;    
+    public bool isGameOver;
     public GameObject losePanel;
 
     //crosshairs
@@ -52,8 +50,6 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         pause = false;
-        Win = false;
-        Lose = false;
         pausePanel.SetActive(false);
         crosshairs.SetActive(true);
     }
@@ -61,22 +57,36 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (isGameOver)
+        {
+            return;
+        }
+            
+
+        if (Input.GetKeyDown(KeyCode.P) && pause == false)
         {
             Pause();
+        }
+        else if (Input.GetKeyDown(KeyCode.P) && pause == true)
+        {
+            ResumeButton();
         }
 
         if (pause == true)
         {
             crosshairs.SetActive(false);
             pausePanel.SetActive(true);
-            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
 
         }
         else
         {
             crosshairs.SetActive(true);
             pausePanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
             if (levelTime > 0)
             {
@@ -88,25 +98,70 @@ public class GameManager : MonoBehaviour
             {
                 levelTime = 0;
                 print("Times up!");
-                Lose = true;
+                SetGameOver(false);
 
             }
 
         }
 
-        if (Lose == true)
-        {
-            LoseGame();
-        }
-
-        if (Win == true)
-        {
-            WinGame();
-        }
-
     }
 
     
+
+    
+
+    public void ResumeButton()
+    {
+        pause = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
+    }
+
+    public void Pause()
+    {
+        pause = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        //stop time
+        Time.timeScale = 0;
+    }
+
+    public void SetGameOver(bool isGameWin)
+    {
+        isGameOver = true;
+
+        if (!winPanel.activeSelf && !losePanel.activeSelf)
+        {
+            if (isGameWin)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                crosshairs.SetActive(false);
+                winPanel.SetActive(true);
+
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                crosshairs.SetActive(false);
+                losePanel.SetActive(true);
+
+                Time.timeScale = 0;
+            }
+        }
+
+      
+    }
+
+    public bool GetIsGameOver()
+    {
+        return isGameOver;
+    }
 
     public void UpdateHealthSlider(float health)
     {
@@ -117,13 +172,13 @@ public class GameManager : MonoBehaviour
     {
         healthCount -= minusHealthValue;
         audioSource.PlayOneShot(damageSound);
-        
+
 
         if (healthCount <= 0)
         {
             healthCount = 0;
-            Lose = true;
-            
+            SetGameOver(false);
+
         }
 
         UpdateHealthSlider(healthCount);
@@ -141,6 +196,12 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateHealthSlider(healthCount);
+    }
+
+    public void RestartBtn()
+    {
+        print("restart");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void SetTimeText(float time)
@@ -161,42 +222,6 @@ public class GameManager : MonoBehaviour
         return timerText;
     }
 
-    public void ResumeButton()
-    {
-        pause = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
 
-    public void Pause()
-    {
-        pause = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    public void LoseGame()
-    {
-        
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshairs.SetActive(false);
-        losePanel.SetActive(true);        
-    }
-
-    public void WinGame()
-    {
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshairs.SetActive(false);
-        winPanel.SetActive(true);
-       
-    }
-
-    public void RestartBtn()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
 }

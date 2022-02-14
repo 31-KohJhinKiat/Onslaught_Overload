@@ -21,7 +21,7 @@ public class BeaconScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             print("win");
-            GameManager.instance.WinGame();
+            GameManager.instance.SetGameOver(true);
         }
        
     }

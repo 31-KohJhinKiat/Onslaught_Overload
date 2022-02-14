@@ -16,7 +16,7 @@ public class EnemyBulletScript1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.Lose == true || GameManager.instance.Win == true)
+        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
         {
             return;
         }
@@ -38,7 +38,7 @@ public class EnemyBulletScript1 : MonoBehaviour
             GameManager.instance.MinusHealth(5);
             Destroy(this.gameObject);
         }
-        print(other);
+        //print(other);
         if (other.CompareTag("Wall"))
         {
             print("hit wall");

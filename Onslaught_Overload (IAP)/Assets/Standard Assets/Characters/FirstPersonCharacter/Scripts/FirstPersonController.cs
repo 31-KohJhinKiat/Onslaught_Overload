@@ -89,8 +89,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-
-            if (GameManager.instance.pause == false)
+            if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
+            {
+                return;
+            }
+            else if (GameManager.instance.isGameOver == false)
             {
                 RotateView();
                 // the jump state needs to read here to make sure it is not missed
@@ -138,12 +141,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     Shoot();
 
                 }
+            }
+
+
+            /*if (GameManager.instance.pause == false)
+            {
+                
 
             }
             else
             {
                 return;
-            }
+            }*/
         }
 
 
@@ -157,7 +166,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-            if (GameManager.instance.pause == false)
+            if (GameManager.instance.pause == false || GameManager.instance.isGameOver == false)
             {
                 float speed;
                 GetInput(out speed);
@@ -196,6 +205,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 UpdateCameraPosition(speed);
 
                 m_MouseLook.UpdateCursorLock();
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -373,16 +386,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Destroy(collision.gameObject);
             }
 
+            print("collision.gameObject.tag: " + collision.gameObject.tag);
+
             if (collision.gameObject.tag.Equals("EndGoal"))
             {
                 print("win");
-                GameManager.instance.WinGame();
+                GameManager.instance.SetGameOver(true);
+
             }
 
-
         }
-
-
 
     }
 }

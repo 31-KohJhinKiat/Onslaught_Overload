@@ -10,15 +10,17 @@ public class BossScript : MonoBehaviour
     //sounds
     public AudioSource audioSource;
     public AudioClip StartUpSound;
+    public AudioClip DamageSound;
     public AudioClip explosionSound;
 
     //particles
+    public ParticleSystem Explosion;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-
+        ExplosionOff();
         audioSource.PlayOneShot(StartUpSound);
     }
 
@@ -28,4 +30,37 @@ public class BossScript : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag.Equals("Bullet"))
+        {
+            audioSource.PlayOneShot(DamageSound);
+            BossHealth--;
+            Destroy(collision.gameObject);
+
+            if (BossHealth <= 0)
+            {
+                audioSource.PlayOneShot(explosionSound);
+                StartCoroutine(dyingSecond());
+            }
+        }
+    }
+
+    public void ExplosionOn()
+    {
+        Explosion.Play();
+    }
+    public void ExplosionOff()
+    {
+        Explosion.Stop();
+    }
+    IEnumerator dyingSecond()
+    {
+        ExplosionOn();
+        yield return new WaitForSeconds(2.3f);
+        GameManager.instance.SetGameOver(true);
+
+    }
+
 }

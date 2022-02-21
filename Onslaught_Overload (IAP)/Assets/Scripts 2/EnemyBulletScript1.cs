@@ -16,14 +16,11 @@ public class EnemyBulletScript1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
-        {
-            return;
-        }
+       
 
         transform.position += transform.forward * BulletSpeed * Time.deltaTime;
         timeCreated += Time.deltaTime;
-        if (timeCreated >= 5)
+        if (timeCreated >= 10)
         {
             Destroy(gameObject);
         }

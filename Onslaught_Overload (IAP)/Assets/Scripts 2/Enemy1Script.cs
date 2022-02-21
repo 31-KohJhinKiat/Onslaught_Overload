@@ -10,13 +10,16 @@ public class Enemy1Script : MonoBehaviour
 
     //Enemy AI
     public NavMeshAgent Enemy1;
-    public Transform player;
+    private GameObject player;
     //private bool canMove;
     public float DamageRate;
     private bool canAttack;
     public float TimeBetweenAttacks;
     private float currentAttackTime1 = 0.0f;
 
+    //disappear
+    private BoxCollider boxCollider;
+    private SkinnedMeshRenderer meshRenderer;
 
     //Sounds
     public AudioSource audioSource;
@@ -34,7 +37,9 @@ public class Enemy1Script : MonoBehaviour
     void Start()
     {
         Enemy1 = GetComponent<NavMeshAgent>();
-        //canMove = false;
+        boxCollider = GetComponent<BoxCollider>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        player = GameObject.Find("FPSController(Alex)");      
         canAttack = false;
         Enemy1.isStopped = false;
         audioSource = GetComponent<AudioSource>();
@@ -45,8 +50,9 @@ public class Enemy1Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
+        if (GameManager.instance.pause == true || GameManager.instance.GetIsGameOver())
         {
+            
             canAttack = false;
             Enemy1.isStopped = true;
             animator.SetBool("isMoving", false);
@@ -54,16 +60,36 @@ public class Enemy1Script : MonoBehaviour
         }
         else
         {
+            //attack time
             currentAttackTime1 = currentAttackTime1 + Time.deltaTime;
             
-            Enemy1.isStopped = false;
+            
 
             if (canAttack == false)
             {
-                Enemy1.SetDestination(player.position);
-                animator.SetBool("isMoving", true);
+                
+
+                // check if the agent is enabled //
+                if (Enemy1.enabled == true)
+                {
+                    //follow player
+                    Enemy1.isStopped = false;
+                    Enemy1.SetDestination(player.transform.position);
+                    animator.SetBool("isMoving", true);
+                }
+                else
+                {
+                    
+                    animator.SetBool("isMoving", false);
+                }
+
+                
             }
-            
+            else
+            {
+                Enemy1.isStopped = true;
+            }
+  
         }
 
     }
@@ -72,13 +98,16 @@ public class Enemy1Script : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
+            //damage
             audioSource.PlayOneShot(damageSound);
             enemy1Health--;
             Destroy(collision.gameObject);
 
+            //enemy die
             if (enemy1Health <= 0)
             {
-                audioSource.PlayOneShot(explosionSound);
+                
+                
                 StartCoroutine(dyingSecond());                           
             }
         }
@@ -100,10 +129,8 @@ public class Enemy1Script : MonoBehaviour
                 audioSource.PlayOneShot(punchSound);          
 
             }
-            
-            
+        
         }
-       
 
     }
 
@@ -124,8 +151,10 @@ public class Enemy1Script : MonoBehaviour
     }
     IEnumerator dyingSecond()
     {
-        //canMove = false;
-        Enemy1.isStopped = true;
+        boxCollider.enabled = false;
+        meshRenderer.enabled = false;
+        audioSource.PlayOneShot(explosionSound);
+        Enemy1.enabled = false;
         ExplosionOn();       
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);

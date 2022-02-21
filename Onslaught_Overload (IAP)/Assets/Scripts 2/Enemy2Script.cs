@@ -10,7 +10,7 @@ public class Enemy2Script : MonoBehaviour
 
     //Enemy AI
     public NavMeshAgent Enemy2;
-    public Transform player;
+    private GameObject player;
     //private bool canMove;
     private bool canAttack;
     public float TimeBetweenAttacks;
@@ -34,6 +34,7 @@ public class Enemy2Script : MonoBehaviour
     void Start()
     {
         Enemy2 = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("FPSController(Alex)");
         //canMove = false;
         Enemy2.isStopped = false;
         audioSource = GetComponent<AudioSource>();
@@ -43,20 +44,25 @@ public class Enemy2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.pause == true || GameManager.instance.isGameOver == true)
+        if (GameManager.instance.pause == true || GameManager.instance.GetIsGameOver())
         {
-            //Enemy2.isStopped = true;
-            Enemy2.enabled = false; // Use this to disable the navmesh agent.
-            // LAter on to unpause, we set to true;
+            Enemy2.isStopped = true;
+            //Enemy2.enabled = false;
             return;
         }
         else
         {
-            Enemy2.enabled = true;
-            currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
 
-            //Follow player
-            Enemy2.SetDestination(player.position);           
+            if (Enemy2.enabled == true)
+            {
+                Enemy2.isStopped = false;
+                currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
+
+                //Follow player
+                Enemy2.SetDestination(player.transform.position);
+            }
+
+            
 
             //Shoot player
             if (currentAttackTime2 >= TimeBetweenAttacks)
@@ -73,10 +79,12 @@ public class Enemy2Script : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
+            //damage
             audioSource.PlayOneShot(damageSound);
             enemy2Health--;
             Destroy(collision.gameObject);
 
+            //enemy die
             if (enemy2Health <= 0)
             {
                 audioSource.PlayOneShot(explosionSound);
@@ -84,21 +92,6 @@ public class Enemy2Script : MonoBehaviour
             }
         }
     }
-
-    /*private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-
-            Enemy2.isStopped = true;
-
-        }
-
-
-    } */
-
-
-
 
     public void ExplosionOn()
     {
@@ -111,7 +104,8 @@ public class Enemy2Script : MonoBehaviour
     IEnumerator dyingSecond()
     {
         //canMove = false;
-        Enemy2.isStopped = true;
+        Enemy2.enabled = false;
+        
         ExplosionOn();
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);

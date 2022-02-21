@@ -49,20 +49,26 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isGameWin = false;
+        isGameOver = false;
         pause = false;
         pausePanel.SetActive(false);
         crosshairs.SetActive(true);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (isGameOver)
         {
             return;
         }
             
-
+        //pause
         if (Input.GetKeyDown(KeyCode.P) && pause == false)
         {
             Pause();
@@ -76,15 +82,18 @@ public class GameManager : MonoBehaviour
         {
             crosshairs.SetActive(false);
             pausePanel.SetActive(true);
+
+            //crusor state
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
 
         }
         else
         {
             crosshairs.SetActive(true);
             pausePanel.SetActive(false);
+
+            //crusor state
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
@@ -106,24 +115,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
-
-    
-
-    public void ResumeButton()
-    {
-        pause = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        Time.timeScale = 1;
-    }
-
     public void Pause()
     {
         pause = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         //stop time
         Time.timeScale = 0;
@@ -131,38 +125,45 @@ public class GameManager : MonoBehaviour
 
     public void SetGameOver(bool isGameWin)
     {
+        //Game over
         isGameOver = true;
 
         if (!winPanel.activeSelf && !losePanel.activeSelf)
         {
             if (isGameWin)
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                
+
                 crosshairs.SetActive(false);
                 winPanel.SetActive(true);
+                audioSource.PlayOneShot(winSound);
+                print("Win");
 
                 Time.timeScale = 0;
             }
             else
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                
+
                 crosshairs.SetActive(false);
                 losePanel.SetActive(true);
+                audioSource.PlayOneShot(loseSound);
+                print("Lose");
 
                 Time.timeScale = 0;
             }
         }
-
-      
     }
 
     public bool GetIsGameOver()
     {
+        //crusor state
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         return isGameOver;
     }
 
+    //Health
     public void UpdateHealthSlider(float health)
     {
         healthBar.GetComponent<Slider>().value = health;
@@ -198,16 +199,49 @@ public class GameManager : MonoBehaviour
         UpdateHealthSlider(healthCount);
     }
 
+    //Buttons
+    public void ResumeButton()
+    {
+        pause = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
+    }
+
     public void RestartBtn()
     {
         print("restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void QuitBtn()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void nextlvlBtn2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void nextlvlBtn3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
+    public void credits()
+    {
+        SceneManager.LoadScene("CreditScene");
+    }
+
+    //Time
     public void SetTimeText(float time)
     {
         TimerText.text = "Timer: " + FormatTime(time);
     }
+
+
 
     private string FormatTime(float time)
     {

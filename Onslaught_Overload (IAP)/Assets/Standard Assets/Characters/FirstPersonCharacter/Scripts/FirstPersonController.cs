@@ -60,10 +60,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //ammo
         public Text AmmoText;
         public float AmmoCount;
-        private float MaxAmmo;
-
-        //damage
-        public float damageRecived;
+        public float MaxAmmo;
 
         // Use this for initialization
         private void Start()
@@ -79,7 +76,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
-            MaxAmmo = 50;
+           
 
             if (AmmoCount == -1)
                 AmmoCount = MaxAmmo;

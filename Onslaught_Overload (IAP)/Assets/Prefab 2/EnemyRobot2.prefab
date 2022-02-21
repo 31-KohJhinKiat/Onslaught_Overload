@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096268623717606762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0.36}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0.847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4095815951523575490}
@@ -39,7 +39,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096268623717606762}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
@@ -244,13 +244,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy2Health: 5
   Enemy2: {fileID: 4096268623087492750}
-  player: {fileID: 0}
-  TimeBetweenAttacks: 1
+  player: {fileID: 8902927181127963554, guid: aeb2cb0ad0f3e614f9515d820fffb759, type: 3}
+  TimeBetweenAttacks: 3
   audioSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 2a11b25ee0cdeca4397fce18d754fcef, type: 3}
   shootSound: {fileID: 8300000, guid: 5a443104ba5f47d45b4ce3badca6bfd9, type: 3}
   explosionSound: {fileID: 8300000, guid: 9cee808030b2b604fb1bbd67303595d3, type: 3}
-  enemyBullet: {fileID: 0}
+  enemyBullet: {fileID: 2384446196465524253, guid: 336f32e347ed6b14f8bf049846d0b9cc,
+    type: 3}
   cannon: {fileID: 4096268623717606762}
   Explosion: {fileID: 5072549044268027996}
 --- !u!1 &4097582189775926206

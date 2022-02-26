@@ -11,11 +11,18 @@ public class Enemy1Script : MonoBehaviour
     //Enemy AI
     public NavMeshAgent Enemy1;
     private GameObject player;
-    //private bool canMove;
     public float DamageRate;
     private bool canAttack;
     public float TimeBetweenAttacks;
     private float currentAttackTime1 = 0.0f;
+
+    //Field of view
+    public float radius;
+    [Range(0, 360)]
+    public float angle;
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
+    public bool canSeePlayer;
 
     //disappear
     private BoxCollider boxCollider;
@@ -44,6 +51,12 @@ public class Enemy1Script : MonoBehaviour
         Enemy1.isStopped = false;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        StartCoroutine(FOVRoutine());
+        
+    }
+
+    private void Awake()
+    {
         ExplosionOff();
     }
 
@@ -67,10 +80,10 @@ public class Enemy1Script : MonoBehaviour
 
             if (canAttack == false)
             {
-                
+
 
                 // check if the agent is enabled //
-                if (Enemy1.enabled == true)
+                /*if (Enemy1.enabled == true)
                 {
                     //follow player
                     Enemy1.isStopped = false;
@@ -81,9 +94,21 @@ public class Enemy1Script : MonoBehaviour
                 {
                     
                     animator.SetBool("isMoving", false);
-                }
+                }*/
 
                 
+
+                if (canSeePlayer == true && Enemy1.enabled == true)
+                {
+                    Enemy1.isStopped = false;
+                    Enemy1.SetDestination(player.transform.position);
+                    animator.SetBool("isMoving", true);
+                }
+                else
+                {
+                    animator.SetBool("isMoving", false);
+                }
+
             }
             else
             {
@@ -92,6 +117,62 @@ public class Enemy1Script : MonoBehaviour
   
         }
 
+    }
+
+    private IEnumerator FOVRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks =
+            Physics.OverlapSphere(transform.position,
+            radius, targetMask);
+
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position -
+                transform.position).normalized;
+
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget =
+                    Vector3.Distance(transform.position, target.position);
+                
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
+                    canSeePlayer = true;
+                    print("hunt");
+                }
+                else
+                {
+                    canSeePlayer = false;
+                    
+                }
+            }
+            else
+            {
+                canSeePlayer = false;
+
+            }
+
+        }
+        else if (canSeePlayer)
+        {
+            canSeePlayer = false;
+            
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -106,8 +187,7 @@ public class Enemy1Script : MonoBehaviour
             //enemy die
             if (enemy1Health <= 0)
             {
-                
-                
+   
                 StartCoroutine(dyingSecond());                           
             }
         }

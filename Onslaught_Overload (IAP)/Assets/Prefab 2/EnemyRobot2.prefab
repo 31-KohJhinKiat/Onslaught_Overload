@@ -244,8 +244,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy2Health: 5
   Enemy2: {fileID: 4096268623087492750}
-  player: {fileID: 8902927181127963554, guid: aeb2cb0ad0f3e614f9515d820fffb759, type: 3}
-  TimeBetweenAttacks: 3
+  TimeBetweenAttacks: 1
+  radius: 100
+  angle: 150
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  canSeePlayer: 0
   audioSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 2a11b25ee0cdeca4397fce18d754fcef, type: 3}
   shootSound: {fileID: 8300000, guid: 5a443104ba5f47d45b4ce3badca6bfd9, type: 3}

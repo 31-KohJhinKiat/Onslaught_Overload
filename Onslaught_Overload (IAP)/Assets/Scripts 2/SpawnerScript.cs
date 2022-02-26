@@ -32,6 +32,7 @@ public class SpawnerScript : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
             Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), 1.05f, Random.Range(minZ, maxZ));
+            Vector3 SpawnRotation = new Vector3(0, Random.Range(0, 350), 0);
 
             //Instantiate(Enemy1, spawnPosition, Quaternion.identity);
 
@@ -39,12 +40,12 @@ public class SpawnerScript : MonoBehaviour
 
             if (RandomNumber == 0)
             {
-                Instantiate(Enemy1, spawnPosition, Quaternion.identity);
+                Instantiate(Enemy1, spawnPosition, Quaternion.Euler(SpawnRotation));
             }
 
             else
             {
-                Instantiate(Enemy2, spawnPosition, Quaternion.identity);
+                Instantiate(Enemy2, spawnPosition, Quaternion.Euler(0, 180f, 0));
             }
         }
     }

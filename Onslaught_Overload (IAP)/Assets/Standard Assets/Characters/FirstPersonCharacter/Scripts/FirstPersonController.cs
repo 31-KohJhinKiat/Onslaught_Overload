@@ -116,16 +116,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                 currentShootTime = currentShootTime + Time.deltaTime;
 
-                if (isReloading)
-                {
-                    return;
-                }
 
-                if (Input.GetKey(KeyCode.R))
+
+                if (Input.GetKey(KeyCode.R) && isReloading == false)
                 {
                     StartCoroutine(Reload());
                     return;
 
+                }
+
+                if (isReloading)
+                {
+                    return;
                 }
 
                 if (AmmoCount <= 0)
@@ -139,17 +141,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                 }
             }
+            m_MouseLook.UpdateCursorLock();
 
-
-            /*if (GameManager.instance.pause == false)
-            {
-                
-
-            }
-            else
-            {
-                return;
-            }*/
         }
 
 
@@ -201,7 +194,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 ProgressStepCycle(speed);
                 UpdateCameraPosition(speed);
 
-                m_MouseLook.UpdateCursorLock();
+                
             }
             else
             {
@@ -304,7 +297,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // only if the player is going to a run, is running and the fovkick is to be used
             if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
             {
-                StopAllCoroutines();
+                //StopAllCoroutines();
                 StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
             }
         }
@@ -360,6 +353,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         IEnumerator Reload()
         {
+            AmmoText.GetComponent<Text>().text = "Ammo: Reloading";
             PlayReloadSound();
             isReloading = true;
             yield return new WaitForSeconds(reloadTime);
@@ -383,15 +377,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Destroy(collision.gameObject);
             }
 
-            print("collision.gameObject.tag: " + collision.gameObject.tag);
+        }
 
+        public void OnTriggerEnter(Collider collision)
+        {
             if (collision.gameObject.tag.Equals("EndGoal"))
             {
                 print("win");
                 GameManager.instance.SetGameOver(true);
 
             }
-
         }
 
     }

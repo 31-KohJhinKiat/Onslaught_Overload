@@ -28,13 +28,12 @@ public class ProtoEnemyScript : MonoBehaviour
     public float SightRange, AttackRange;
     public bool PlayerInSightRange, PlayerInAttackRange;
 
-    //Animation
-    public Animator animator;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame

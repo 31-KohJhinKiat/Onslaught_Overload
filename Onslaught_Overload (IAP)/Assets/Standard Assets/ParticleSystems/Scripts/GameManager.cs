@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
         isGameWin = false;
         isGameOver = false;
         pause = false;
@@ -132,7 +132,9 @@ public class GameManager : MonoBehaviour
         {
             if (isGameWin)
             {
-                
+                //crusor state
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
 
                 crosshairs.SetActive(false);
                 winPanel.SetActive(true);
@@ -143,7 +145,9 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                
+                //crusor state
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
 
                 crosshairs.SetActive(false);
                 losePanel.SetActive(true);
@@ -157,9 +161,7 @@ public class GameManager : MonoBehaviour
 
     public bool GetIsGameOver()
     {
-        //crusor state
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
         return isGameOver;
     }
 

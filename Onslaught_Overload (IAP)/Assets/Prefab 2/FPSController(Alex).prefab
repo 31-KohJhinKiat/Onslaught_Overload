@@ -411,11 +411,11 @@ MonoBehaviour:
   bullet: {fileID: 4417071945547739322, guid: c8caa7cb1923c61429ef31513f9d1c5e, type: 3}
   canShoot: 1
   shoot: {fileID: 8300000, guid: 2220f6626f6dc0c4b8588501193d2ba5, type: 3}
-  reloadTime: 4
+  reloadTime: 3
   reload: {fileID: 8300000, guid: 24b33b0abef3b104aa03e8d7919c1283, type: 3}
   AmmoText: {fileID: 0}
-  AmmoCount: 50
-  damageRecived: 50
+  AmmoCount: 100
+  MaxAmmo: 100
 --- !u!54 &8902927181124545762
 Rigidbody:
   m_ObjectHideFlags: 0

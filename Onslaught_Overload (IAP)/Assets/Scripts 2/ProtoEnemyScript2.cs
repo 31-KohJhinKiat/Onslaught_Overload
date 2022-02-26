@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class ProtoEnemyScript2 : MonoBehaviour
 {
+    // navmesh agent
+    public NavMeshAgent ProtoCube;
+
     //Field of view
     public float radius;
     [Range(0, 360)]
@@ -24,7 +27,10 @@ public class ProtoEnemyScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (canSeePlayer == true)
+        {
+            ProtoCube.SetDestination(playerRef.transform.position);
+        }
     }
 
     private IEnumerator FOVRoutine()

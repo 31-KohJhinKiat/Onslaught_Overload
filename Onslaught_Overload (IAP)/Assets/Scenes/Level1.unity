@@ -661,6 +661,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 387833008}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1068,7 +1088,32 @@ PrefabInstance:
     - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: TimeBetweenAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 1697689822}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 613237441}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
@@ -1193,6 +1238,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 540738657}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1446,6 +1511,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &613237441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8902927181127798658, guid: aeb2cb0ad0f3e614f9515d820fffb759,
+    type: 3}
+  m_PrefabInstance: {fileID: 2122753333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &679162542 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3977956447318323917, guid: 7d813a29661b45a45a0402ebc3eb0c0c,
@@ -1489,6 +1560,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 156517830}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1578,6 +1669,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 723446735}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1765,6 +1876,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 755666281}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1927,6 +2058,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8058833144285498672, guid: b5304fcb2ddfa7949838e1f2178f4047,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058833144285498672, guid: b5304fcb2ddfa7949838e1f2178f4047,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058833144285498672, guid: b5304fcb2ddfa7949838e1f2178f4047,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8058833144285498674, guid: b5304fcb2ddfa7949838e1f2178f4047,
         type: 3}
       propertyPath: m_Name
@@ -2448,7 +2594,32 @@ PrefabInstance:
     - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: TimeBetweenAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 1697689822}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 613237441}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
@@ -2573,6 +2744,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 1020189872}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2870,6 +3061,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 1111574063}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2970,6 +3181,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 826091398}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3531,6 +3762,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 1321259571}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3645,6 +3896,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1361297501 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5455617236585088440, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928614103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1391800292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3677,6 +3934,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 1391800293}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4052,7 +4329,32 @@ PrefabInstance:
     - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: TimeBetweenAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 1697689822}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 613237441}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
@@ -4229,7 +4531,32 @@ PrefabInstance:
     - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: TimeBetweenAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 1697689822}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 613237441}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
@@ -4677,6 +5004,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4926591831143164, guid: dad5ac76e863a834aa3d74b266e53f15,
     type: 3}
   m_PrefabInstance: {fileID: 1696805540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1697689822 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 4096268623087492750, guid: 424c1840f1d91d440bbdee69f84ccea1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1972051376}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1710734682
 PrefabInstance:
@@ -5214,6 +5547,26 @@ PrefabInstance:
       propertyPath: Explosion
       value: 
       objectReference: {fileID: 1183418296}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455617236585088442, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
+        type: 3}
+      propertyPath: Enemy1
+      value: 
+      objectReference: {fileID: 1361297501}
     - target: {fileID: 5456398847745677597, guid: 0c9b08651b454ac4a9b2330bdf39ba27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5520,7 +5873,27 @@ PrefabInstance:
     - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}
       propertyPath: TimeBetweenAttacks
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: angle
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 613237441}
+    - target: {fileID: 4096268623087492751, guid: 424c1840f1d91d440bbdee69f84ccea1,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4097206879505450168, guid: 424c1840f1d91d440bbdee69f84ccea1,
         type: 3}

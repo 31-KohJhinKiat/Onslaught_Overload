@@ -26,7 +26,7 @@ public class Enemy2Script : MonoBehaviour
 
     //disappear
     private BoxCollider boxCollider;
-    private SkinnedMeshRenderer meshRenderer;
+    //private SkinnedMeshRenderer meshRenderer;
 
     //Sounds
     public AudioSource audioSource;
@@ -169,7 +169,7 @@ public class Enemy2Script : MonoBehaviour
             //enemy die
             if (enemy2Health <= 0)
             {
-                ExplosionOn();
+                
                 StartCoroutine(dyingSecond());
             }
         }
@@ -185,10 +185,11 @@ public class Enemy2Script : MonoBehaviour
     }
     IEnumerator dyingSecond()
     {
-        
+        print("explode 2");
         boxCollider.enabled = false;
         audioSource.PlayOneShot(explosionSound);
-        Enemy2.enabled = false;                      
+        Enemy2.enabled = false;
+        ExplosionOn();
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);
 

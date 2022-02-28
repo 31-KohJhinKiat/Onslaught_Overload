@@ -82,22 +82,6 @@ public class Enemy1Script : MonoBehaviour
             {
 
 
-                // check if the agent is enabled //
-                /*if (Enemy1.enabled == true)
-                {
-                    //follow player
-                    Enemy1.isStopped = false;
-                    Enemy1.SetDestination(player.transform.position);
-                    animator.SetBool("isMoving", true);
-                }
-                else
-                {
-                    
-                    animator.SetBool("isMoving", false);
-                }*/
-
-                
-
                 if (canSeePlayer == true && Enemy1.enabled == true)
                 {
                     Enemy1.isStopped = false;

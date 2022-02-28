@@ -64,21 +64,12 @@ public class Enemy2Script : MonoBehaviour
     {
         if (GameManager.instance.pause == true || GameManager.instance.GetIsGameOver())
         {
-            Enemy2.isStopped = true;
+            //Enemy2.isStopped = true;
             //Enemy2.enabled = false;
             return;
         }
         else
         {
-
-            /*if (Enemy2.enabled == true)
-            {
-                Enemy2.isStopped = false;
-                currentAttackTime2 = currentAttackTime2 + Time.deltaTime;
-
-                //Follow player
-                Enemy2.SetDestination(player.transform.position);
-            }*/
 
             if (canSeePlayer == true && Enemy2.enabled == true)
             {

@@ -169,7 +169,7 @@ public class Enemy2Script : MonoBehaviour
             //enemy die
             if (enemy2Health <= 0)
             {
-                audioSource.PlayOneShot(explosionSound);
+                ExplosionOn();
                 StartCoroutine(dyingSecond());
             }
         }
@@ -185,9 +185,10 @@ public class Enemy2Script : MonoBehaviour
     }
     IEnumerator dyingSecond()
     {
-        Enemy2.enabled = false;
-        boxCollider.enabled = false;        
-        ExplosionOn();
+        
+        boxCollider.enabled = false;
+        audioSource.PlayOneShot(explosionSound);
+        Enemy2.enabled = false;                      
         yield return new WaitForSeconds(2.3f);
         Destroy(gameObject);
 

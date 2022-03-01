@@ -45,7 +45,7 @@ public class SpawnerScript : MonoBehaviour
 
             else
             {
-                Instantiate(Enemy2, spawnPosition, Quaternion.Euler(0, 180f, 0));
+                Instantiate(Enemy2, spawnPosition, Quaternion.Euler(SpawnRotation));
             }
         }
     }

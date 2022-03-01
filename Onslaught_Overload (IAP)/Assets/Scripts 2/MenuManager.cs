@@ -74,4 +74,9 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("CreditScene");
     }
 
+    public void leaveGame()
+    {
+        Application.Quit();
+    }
+
 }

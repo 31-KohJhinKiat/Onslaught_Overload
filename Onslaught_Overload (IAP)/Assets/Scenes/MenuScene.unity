@@ -2145,12 +2145,12 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: The year is 2050, and humans are now relying on machines to serve them.
-    The human became lazy and greedy. Worst of all, they treat their metallic creations
-    a little more than slaves meant to do their bidding, unaware that one day, they
-    will pay the price for their ignorance. Suddenly, the robots revolted against
-    their abusive masters. Alex, who is an android, is assigned to stop an army of
-    robots from rebelling against mankind. His goal, destroy the factory producing
-    the robots.
+    The human have become lazy and greedy. Worst of all, they treat their metallic
+    creations a little more than slaves meant to do their bidding, unaware that one
+    day, they will pay the price for their ignorance. Suddenly, the robots revolted
+    against their abusive masters. Alex, who is a cyborg, is assigned to stop an
+    army of robots from rebelling against mankind. His goal, destroy the factory
+    producing the robots.
 --- !u!222 &755780460
 CanvasRenderer:
   m_ObjectHideFlags: 0
